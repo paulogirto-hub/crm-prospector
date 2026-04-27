@@ -22,7 +22,9 @@ class Config
         $path = $path ?? dirname(__DIR__, 2) . '/.env';
 
         if (!file_exists($path)) {
-            throw new \RuntimeException("Arquivo .env não encontrado em: {$path}");
+            // Se não tem .env, usa variáveis de ambiente do sistema (Docker)
+            self::$loaded = true;
+            return;
         }
 
         $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);

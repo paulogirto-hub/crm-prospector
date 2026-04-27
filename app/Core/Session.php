@@ -19,7 +19,14 @@ class Session
             return;
         }
 
+        // Garante que o diretório de sessões existe e é gravável
+        $sessionDir = '/app/storage/sessions';
+        if (!is_dir($sessionDir)) {
+            @mkdir($sessionDir, 0777, true);
+        }
+
         // Configurações de segurança
+        ini_set('session.save_path', $sessionDir);
         ini_set('session.cookie_httponly', '1');
         ini_set('session.cookie_samesite', 'Lax');
         ini_set('session.use_strict_mode', '1');

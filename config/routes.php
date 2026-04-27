@@ -17,7 +17,7 @@ Router::get('/ready', 'HealthController@ready');
 // Auth Routes
 // ══════════════════════════════════════
 Router::get('/login', 'AuthController@loginForm', ['GuestMiddleware']);
-Router::post('/login', 'AuthController@login', ['GuestMiddleware', 'CsrfMiddleware', 'RateLimitMiddleware']);
+Router::post('/login', 'AuthController@login', ['GuestMiddleware', 'RateLimitMiddleware']);
 Router::get('/register', 'AuthController@registerForm', ['AuthMiddleware', 'AdminMiddleware']);
 Router::post('/register', 'AuthController@register', ['AuthMiddleware', 'CsrfMiddleware', 'AdminMiddleware', 'RateLimitMiddleware']);
 
