@@ -1,0 +1,63 @@
+/* Prospec CRM — Custom overrides */
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #0a0a0f;
+}
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Selection */
+::selection {
+    background: rgba(139, 92, 246, 0.3);
+    color: white;
+}
+
+/* Focus ring */
+*:focus-visible {
+    outline: 2px solid #8b5cf6;
+    outline-offset: 2px;
+}
+
+/* Alpine cloak */
+[x-cloak] { 
+    display: none !important; 
+}
+
+/* Kanban card dragging */
+.kanban-card.dragging {
+    opacity: 0.5;
+    transform: rotate(2deg);
+}
+
+/* Toast animation */
+.toast-enter {
+    animation: slideIn 0.3s ease-out;
+}
+.toast-leave {
+    animation: slideOut 0.2s ease-in;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
+}

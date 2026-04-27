@@ -1,0 +1,33 @@
+# Prospec CRM — .gitignore
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Vendor
+/vendor/
+/node_modules/
+
+# Storage
+/storage/logs/*
+/storage/cache/*
+/storage/sessions/*
+/storage/uploads/*
+!/storage/logs/.gitkeep
+!/storage/cache/.gitkeep
+!/storage/sessions/.gitkeep
+!/storage/uploads/.gitkeep
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+docker-compose.override.yml

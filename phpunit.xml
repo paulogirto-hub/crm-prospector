@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="tests/bootstrap.php"
+         colors="true"
+         stopOnFailure="false"
+         failOnRisky="true"
+         failOnWarning="true"
+         cacheDirectory=".phpunit.cache">
+    <testsuites>
+        <testsuite name="Prospec CRM Test Suite">
+            <directory>tests</directory>
+            <exclude>tests/TestAuth.php</exclude>
+            <exclude>tests/TestConsistency.php</exclude>
+            <exclude>tests/TestInputValidation.php</exclude>
+            <exclude>tests/TestPipelineRules.php</exclude>
+            <exclude>tests/TestPlanLimits.php</exclude>
+            <exclude>tests/TestRateLimit.php</exclude>
+            <exclude>tests/TestSecurity.php</exclude>
+            <exclude>tests/bootstrap.php</exclude>
+        </testsuite>
+    </testsuites>
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="DB_HOST" value="postgres"/>
+        <env name="DB_PORT" value="5432"/>
+        <env name="DB_NAME" value="prospec_crm"/>
+        <env name="DB_USER" value="prospec"/>
+        <env name="DB_PASS" value="prospec123"/>
+        <env name="REDIS_HOST" value="redis"/>
+        <env name="REDIS_PORT" value="6379"/>
+    </php>
+</phpunit>
