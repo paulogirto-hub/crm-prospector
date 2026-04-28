@@ -16,3 +16,7 @@ ALTER TABLE leads ADD COLUMN IF NOT EXISTS owner_id INTEGER REFERENCES users(id)
 -- Corrigir audit_log com colunas que o código espera
 ALTER TABLE audit_log ADD COLUMN IF NOT EXISTS user_agent TEXT;
 ALTER TABLE audit_log ADD COLUMN IF NOT EXISTS session_id VARCHAR(128);
+ALTER TABLE audit_log ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP WITH TIME ZONE; -- para soft delete
+
+-- Adiciona coluna deleted_at à leads (já coberto acima, mas redundante aqui para consistência)
+ALTER TABLE leads ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP WITH TIME ZONE;
