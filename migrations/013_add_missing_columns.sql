@@ -1,4 +1,4 @@
--- 013_add_missing_lead_columns.sql
+-- 013_add_missing_columns.sql
 -- Adiciona colunas faltantes à tabela leads que o código espera
 
 ALTER TABLE leads ADD COLUMN IF NOT EXISTS name VARCHAR(255);
@@ -10,13 +10,20 @@ ALTER TABLE leads ADD COLUMN IF NOT EXISTS country VARCHAR(10) DEFAULT 'BR';
 ALTER TABLE leads ADD COLUMN IF NOT EXISTS niche VARCHAR(100);
 ALTER TABLE leads ADD COLUMN IF NOT EXISTS website VARCHAR(255);
 ALTER TABLE leads ADD COLUMN IF NOT EXISTS description TEXT;
-ALTER TABLE leads ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP WITH TIME ZONE;
 ALTER TABLE leads ADD COLUMN IF NOT EXISTS owner_id INTEGER REFERENCES users(id) ON DELETE SET NULL;
 
--- Corrigir audit_log com colunas que o código espera
+-- deleted_at para soft delete em todas as tabelas que usam Model com softDelete=true
+ALTER TABLE leads ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP WITH TIME ZONE;
+ALTER TABLE companies ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP WITH TIME ZONE;
+ALTER TABLE users ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP WITH TIME ZONE;
+ALTER TABLE tasks ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP WITH TIME ZONE;
+ALTER TABLE templates ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP WITH TIME ZONE;
+ALTER TABLE pipeline_stages ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP WITH TIME ZONE;
+ALTER TABLE settings ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP WITH TIME ZONE;
+ALTER TABLE search_sessions ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP WITH TIME ZONE;
+ALTER TABLE lead_activities ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP WITH TIME ZONE;
+
+-- audit_log: colunas extras que o código espera
 ALTER TABLE audit_log ADD COLUMN IF NOT EXISTS user_agent TEXT;
 ALTER TABLE audit_log ADD COLUMN IF NOT EXISTS session_id VARCHAR(128);
-ALTER TABLE audit_log ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP WITH TIME ZONE; -- para soft delete
-
--- Adiciona coluna deleted_at à leads (já coberto acima, mas redundante aqui para consistência)
-ALTER TABLE leads ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP WITH TIME ZONE;
+ALTER TABLE audit_log ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP WITH TIME ZONE;
